@@ -1,0 +1,20 @@
+{
+    "globalDevDependencies": {
+        "jasmine": "registry:dt/jasmine#2.2.0+20160505161446",
+        "node": "registry:dt/node#6.0.0+20160514165920",
+        "q": "registry:dt/q#0.0.0+20160613154756",
+        "selenium-webdriver": "registry:dt/selenium-webdriver#2.44.0+20160317120654"
+    },
+    "globalDependencies": {
+        "cordova": "registry:dt/cordova#0.0.0+20160316155526",
+        "cordova/plugins/dialogs": "registry:dt/cordova/plugins/dialogs#0.0.0+20160316155526",
+        "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#4de74cb527395c13ba20b438c3a7a419ad931f1c",
+        "google.maps": "registry:dt/google.maps#3.20.0+20160402004335",
+        "jquery": "registry:dt/jquery#1.10.0+20160316155526",
+        "lodash": "registry:dt/lodash#3.10.0+20160330154726",
+        "markerclustererplus": "registry:dt/markerclustererplus#2.1.1+20160316155526",
+        "phonegap-plugin-push": "registry:dt/phonegap-plugin-push#0.0.0+20160501153936",
+        "postal": "registry:dt/postal#1.0.8+20160425155829",
+        "toastr": "registry:dt/toastr#2.1.1+20160510010435"
+    }
+}
