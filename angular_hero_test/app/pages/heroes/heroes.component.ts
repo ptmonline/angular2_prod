@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Hero } from './hero';
+import { Hero } from '../../hero';
 import 'rxjs/add/operator/toPromise';
 import { Router } from '@angular/router';
-import { HeroService } from './hero.service';
+import { HeroService } from '../../services/hero.service';
 
 @Component({
   moduleId: module.id,
