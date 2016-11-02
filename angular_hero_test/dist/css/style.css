@@ -827,7 +827,7 @@ button {
   .heroes li {
     position: relative;
     left: 0;
-    height: 1.9rem;
+    height: 2.5rem;
     margin: 0.8rem;
     padding: 0.5rem 0;
     background-color: #eeeeee;
@@ -842,12 +842,12 @@ button {
     top: -0.3rem; }
   .heroes .badge {
     position: relative;
-    top: -0.4rem;
+    top: -0.5rem;
     left: -0.1rem;
     display: inline-block;
     height: 2.5rem;
     margin-right: 1.3rem;
-    padding: 1.4rem 1.3rem 0;
+    padding: 0.4rem 1.3rem 0;
     font-size: small;
     color: white;
     background-color: #607d8b;
@@ -856,7 +856,7 @@ button {
 
 button.delete {
   float: right;
-  margin-top: 0.2rem;
-  margin-right: 1.4rem;
+  margin-top: -0.2rem;
+  margin-right: 0.4rem;
   background-color: gray !important;
   color: white; }
