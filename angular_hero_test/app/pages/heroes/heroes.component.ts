@@ -8,7 +8,6 @@ import { HeroService } from '../../services/hero.service';
   moduleId: module.id,
   selector: 'my-heroes',
   templateUrl: 'heroes.component.html',
-  styleUrls: ['heroes.component.css'],
   providers: [HeroService]
 
 })

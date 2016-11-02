@@ -1,0 +1,67 @@
+// App Shared Imports
+// --------------------------------------------------
+
+// Common
+// --------------------------------------------------
+@import 'common/variables';
+@import 'common/functions';
+@import 'common/mixins';
+@import 'common/helpers';
+
+//Components
+//---------------------------------------------------
+@import '../style';
+@import './components/app.component';
+@import './components/dashboard.component';
+@import './components/hero-detail.component';
+@import './components/hero-search.component';
+@import './components/heroes.component';
+
+// Check required functions
+// --------------------------------------------------
+@if( $set-use-rems == true and function-exists( rem ) == false ) {
+  @error 'rem() is required. Add rem function in functions.scss';
+}
+
+@if( function-exists( z ) == false ) {
+  @error 'z() is required. Add z() function in functions.scss';
+}
+
+@if( function-exists( get-color ) == false ) {
+  @error 'get-color() is required. Add get-color() function in functions.scss';
+}
+
+@if( function-exists( strip-unit ) == false ) {
+  @error 'strip-unit() is required. Add strip-unit() function in functions.scss';
+}
+
+@if( function-exists( parse-int ) == false ) {
+  @error 'parseInt() is required. Add parseInt() function in functions.scss';
+}
+
+@if( function-exists( get-size ) == false ) {
+  @error 'get-size() is required. Add get-size() function in functions.scss';
+}
+
+// Check required mixins
+// --------------------------------------------------
+
+@if( mixin-exists( respond-to ) == false ) {
+  @error '@mixin respond-to is required. Add respond-to mixin into mixins.scss';
+}
+
+@if( mixin-exists( size ) == false ) {
+  @error '@mixin size is required. Add size mixin into mixins.scss';
+}
+
+@if( mixin-exists( clearfix ) == false ) { 
+  @error '@mixin clearfix is required. Add clearfix mixin into mixins.scss';
+}
+
+@if( mixin-exists( center-block ) == false ) { 
+  @error '@mixin centerBlock is required. Add centerBlock mixin into mixins.scss';
+}
+
+@if( mixin-exists( keyframes ) == false ) {
+  @error '@mixin keyframes is required. Add keyframes mixin into mixins.scss';
+}

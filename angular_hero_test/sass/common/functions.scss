@@ -1,0 +1,93 @@
+// Common functions
+// --------------------------------------------------
+// Conjunto de funciones compartidas en todo el contexto de la app
+// tanto en web, como en mobile.
+// No son visibles en la salida del css.
+
+
+/// Strip units !important for rem
+@function strip-unit( $num ) {
+	@return $num / ( $num * 0 + 1 );
+}
+
+/// Pasa a entero.
+/// @access public
+/// @param {Number} $n - numero a parsear como integer
+/// @return {Number}
+@function parse-int( $n ) {
+	@return $n / ( $n * 0 + 1 );
+}
+
+/// Convierte un valor en pixels a rems
+/// @name rem()
+/// @access public
+/// @param {Number} $n - numero a parsear como integer
+/// @return {Number}
+@function rem( $size, $base: 10px ) {
+	$rem-size: $size / $base;
+	@return #{$rem-size}rem;
+}
+
+/// Retorna el valor de z-index asignado en un mapa sass
+/// @access public
+/// @param {String} $layer - nombre de capa
+/// @return {Number}
+/// @require $z-indexes map dentro de app.variables.scss
+@function z( $layer ) {
+	@if not map-has-key( $z-indexes, $layer ) {
+		@error 'There is no layer named `#{$layer}` in $z-indexes. '
+				 + 'Layer should be one of #{map-keys($z-indexes)}.';
+	}
+
+	@return map-get( $z-indexes, $layer );
+}
+
+
+/// Retorna el valor de la fuente si está
+/// en el mapa de tamaños de fuente
+/// @access public
+/// @param {string} $key - nombre de la clave
+/// @return {string}
+@function get-size( $key ) {
+	@if map-has-key( $font-sizes, $key ) {
+		@return map-get( $font-sizes, $key );
+	}
+
+	@warn 'Unknown `#{$key}` in $font-sizes.';
+	@return null;
+}
+
+/// Retorna el color si está en el mapa de colores
+/// @access public
+/// @param {string} $key - Nombre de la clave
+/// @return {string}
+@function get-color( $key ) {
+	@if map-has-key( $colors, $key ) {
+		@return map-get( $colors, $key );
+	}
+
+	@warn 'Unknown `#{$key}` in $colors.';
+	@return null;
+}
+
+
+/// Set button text color
+/// Retorna un color en función de si el background es oscuro o claro.
+/// @example
+/// .box {
+///   background: #000;
+///   color: @include set-button-text-color(#000);
+///  }
+/// @access public
+/// @param {string} $color - Color del background para determinar
+/// @param {string} $txt-color-dark - Color del texto oscuro, por defecto se define en #000
+/// @param {string} $txt-color-lightness - Color del texto claro, por defecto se define en #fff
+/// si es oscuro o claro
+/// @return {string} - Retorna el color del texto
+@function set-button-text-color( $color, $txt-color-dark: #000000, $txt-color-lightness: #ffffff ) {
+	@if (lightness( $color ) > 60) {
+		@return $txt-color-dark;
+	}	@else {
+		@return $txt-color-lightness;
+	}
+}

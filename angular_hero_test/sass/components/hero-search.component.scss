@@ -1,0 +1,12 @@
+.search-result {
+  @include search-box;
+  padding: rem( 5px );
+  background-color: white;
+  cursor: pointer;
+  @include border-block( bottom, left, right );
+
+}
+
+.search-box {
+  @include search-box
+}

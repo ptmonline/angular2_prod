@@ -1,5 +1,11 @@
 var gulp = require('gulp');
 var del = require('del');
+var sass = require('gulp-sass'),
+  autoprefix = require('gulp-autoprefixer'),
+  rename = require('gulp-rename'),
+  cssnano = require('gulp-cssnano'),
+  connect = require('gulp-connect'),
+  sassLint = require('gulp-sass-lint');
 var $ = require('gulp-load-plugins')({ lazy: true });
 var lite = require('lite-server');
 
@@ -71,5 +77,50 @@ function log(msg) {
     $.util.log($.util.colors.blue(msg));
   }
 }
+
+// 1. import JSON config files
+// ----------------------------------------------
+var paths = require('./config-paths');
+
+// Get the sass lint options from a json file
+var scssLintOptions = require(paths.sassLint);
+
+
+// 2. Global tasks
+// ----------------------------------------------
+gulp.task('connect', function () {
+  connect.server({
+    root: paths.root,
+    livereload: true,
+    port: 3000
+  });
+});
+
+// 3. SASS tasks
+// ----------------------------------------------
+gulp.task('sass', ['sass-lint'], function () {
+  return gulp.src(paths.sass + 'main.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(rename('style.css'))
+    .pipe(autoprefix('last 2 versions'))
+    .pipe(gulp.dest(paths.dist + 'css'))
+    .pipe(cssnano())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest(paths.dist + 'css'))
+    // .pipe(connect.reload());
+});
+
+gulp.task('sass-lint', function () {
+  return gulp.src(paths.sass + '**/*.s+(a|c)ss') 
+    .pipe(sassLint(scssLintOptions))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
+});
+// Watch & default tasks
+// ----------------------------------------------
+gulp.task('watch', function () {
+  gulp.watch( paths.sass + '**/*.scss', ['sass']);
+  // gulp.watch( paths.root + '**/*.html', ['html','img']);
+});
 
 module.exports = gulp;

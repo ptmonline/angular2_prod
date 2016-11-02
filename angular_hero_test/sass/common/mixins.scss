@@ -1,0 +1,118 @@
+// Common mixins
+// --------------------------------------------------
+// Conjunto de mixins comunes en todo el contexto de la app,
+// tanto en web como en mobile.
+// 1. Size
+// 2. Clearfix
+// 3. CenterBlock
+// 4. Respond-to
+// 5. Font-size
+
+/// Asigna un tamaño a un elemento
+/// @name size
+/// @author Hugo Giraudel
+/// @param {Length} $width
+/// @param {Length} $height
+@mixin size( $width, $height: $width ) {
+  width: $width;
+  height: $height;
+}
+
+/// @name clearfix
+/// Solución para hacer crecer el elemento bloque
+/// en función de sus hijos
+/// @param {Length} $width
+/// @param {Length} $height
+
+@mixin clearfix {
+//*zoom: 1;
+  zoom: 1;
+
+  &::before {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+/// @name centerBlock
+/// @author Alberto Córcoles
+/// Añade un bloque de propiedades para centrar
+/// un elemento con respecto a su posición absoluta.
+@mixin center-block {
+  top: 50%;
+  left: 50%;
+  transform: translate3d( -50%, -50%, 0 );
+}
+
+/// @name Keyframes
+/// @author Hugo Giraudel
+/// Injecta los keyframes con sus modificadores correspondientes
+/// @example
+/// @include keyframes(inElement) {
+///   0% { opacity: 0 }
+///   100% { opacity: 1 }
+/// }
+/// @param {string} $name
+@mixin keyframes( $name ) {
+    @-webkit-keyframes #{$name} {@content; }
+    @-moz-keyframes #{$name} {@content;}
+    @-ms-keyframes #{$name} {@content;}
+    @keyframes #{$name} {@content;}
+}
+
+/// @name respond-to
+/// Mixin media query with sass maps
+/// @require $breakpoints
+/// @param {string} name -- > Valor del breakpoint en px
+/// @param {string} type --> Indica si es max-width o min-width, por
+/// defecto siempre será max-width
+@mixin respond-to( $breakpoint, $type: max ) {
+  @if map-has-key( $breakpoints, $breakpoint ) {
+    @media (#{$type}-width: #{map-get( $breakpoints, $breakpoint )}) {
+      @content;
+    }
+  } @else {
+      @warn 'Unfortunately, no value could be retrieved from `#{$breakpoint}`. '
+      + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
+// @name Font-size
+// The font-sizes map, it’ll use the breakpoint name to get the appropriate
+// value from $breakpoints before generating the media query.
+// Required rem mixin
+@mixin font-size( $fs-map, $fs-breakpoints: $breakpoints ) {
+  @each $fs-breakpoint, $fs-font-size in $fs-map {
+    @if $fs-breakpoint == null {
+      font-size: rem( $fs-font-size );
+    } @else {
+      // If $fs-font-size is a key that exists in
+      // $fs-breakpoints, use the value
+      @if map-has-key( $fs-breakpoints, $fs-breakpoint ) {
+        $fs-breakpoint: map-get( $fs-breakpoints, $fs-breakpoint );
+      }
+
+      @media screen and ( min-width: $fs-breakpoint ) {
+        font-size: rem( $fs-font-size );
+      }
+    }
+  }
+}
+
+/// @name centerBlock
+/// Border styling
+@mixin search-box {
+  width: rem( 200px );
+  height: rem( 20px );
+}
+@mixin border-block( $bposition... ) {
+  @each $key in $bposition {
+    border-#{$key}: rem( 1px ) solid gray; 
+  }
+}

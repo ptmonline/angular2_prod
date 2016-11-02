@@ -1,0 +1,10 @@
+{
+  "root": "./",
+  "sass": "./sass/",
+  "sassLint": "./sass/sass-lint.json",
+  "dist": "./dist/",
+  "resources": "./resources/",
+  "img": "./resources/img/",
+  "svgIcons": "./resources/svg-icons/",
+  "fonts": "./resources/fonts/"
+}

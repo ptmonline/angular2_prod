@@ -1,0 +1,164 @@
+// Common helpers
+// --------------------------------------------------
+// Conjunto de clases comunes en toda el contexto de la app,
+// tanto en web, como en mobile.
+// 1. Margin classes
+// 2. Padding classes
+// 3. Padding box
+// 4. Alineación left / right de texto, de elemento, etc
+// 5. Child-align classes
+// 6. width percent
+// 7. Linkable
+
+// 1. Margin helpers
+// --------------------------------------------------
+// Margin Top, right, left y bottom. Van del 5 al 100px.
+// mrt --> margin-top
+// mrr --> margin-right
+// mrb --> margin-bottom
+// mrl --> margin-left
+// --------------------------------------------------
+
+// Top margins
+@for $i from 1 through 20 {
+	$num: ( $i * 5 );
+
+	.#{mrt}#{$num} {
+    	margin-top: (0px + $num);
+	}
+}
+
+// Right margin
+@for $i from 1 through 20 {
+	$num: ( $i * 5 );
+
+	.#{mrr}#{$num} {
+    	margin-right: (0px + $num);
+	}
+}
+
+// Bottom margins
+@for $i from 1 through 20 {
+	$num: ( $i * 5 );
+
+	.#{mrb}#{$num} {
+    	margin-bottom: (0px + $num);
+	}
+}
+
+// Left margin
+@for $i from 1 through 20 {
+	$num: ( $i * 5 );
+
+	.#{mrl}#{$num} {
+    	margin-left: (0px + $num);
+	}
+}
+
+// 2. Padding helpers
+// --------------------------------------------------
+// Padding Top, right, left y bottom. Van del 5 al 100px.
+// pat --> padding-top
+// par --> padding-right
+// pab --> padding-bottom
+// pal --> padding-left
+// --------------------------------------------------
+// Bottom padding
+@for $i from 1 through 20 {
+	$num: ( $i * 5 );
+
+	.#{pab}#{$num} {
+    	padding-bottom: (0px + $num);
+	}
+}
+
+// Top padding
+@for $i from 1 through 20 {
+	$num: ( $i * 5 );
+
+	.#{pat}#{$num} {
+    	padding-top: (0px + $num);
+	}
+}
+
+// Left padding
+@for $i from 1 through 20 {
+	$num: ( $i * 5 );
+
+	.#{pal}#{$num} {
+    	padding-left: (0px + $num);
+	}
+}
+
+// Right padding
+@for $i from 1 through 20 {
+	$num: ( $i * 5 );
+
+	.#{par}#{$num} {
+    	padding-right: (0px + $num);
+	}
+}
+
+// 3. Padding box
+// --------------------------------------------------
+// Padding box es útil para dar padding a cajas de manera
+// homogenea.
+@for $i from 1 through 5 {
+	$num: ($i * 10);
+
+	[padding--#{$num}],
+	.padding--#{$num} {
+		padding: (0px + $num);
+	}
+}
+
+
+// 4. Alineación left / right de texto, de elemento, etc
+// --------------------------------------------------
+[txt--center],
+.txt--center {
+	text-align: center;
+}
+
+[txt--left],
+.txt--left {
+  text-align: left;
+}
+
+[txt--right],
+.txt--right {
+  text-align: right;
+}
+
+// 5. Child-align classes
+// --------------------------------------------------
+// Alineación que afecta a todos los hijos del elemneto
+// apliado.
+[align-child--v],
+.align-child--v {
+	& > * {
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
+// 6. width percent
+// --------------------------------------------------
+// Fija el ancho de un elemento en el porcentaje indicado
+// Ejemplo:
+// <div class="width--20"></div> == div { width: 20%;}
+@for $i from 1 through 10 {
+	$num: ($i * 10);
+
+	[width--#{$num}],
+	.width--#{$num} {
+		width: 0% + $num !important;
+	}
+}
+
+// 7. Linkable
+// --------------------------------------------------
+[linkable],
+.linkable {
+	cursor: pointer;
+}
