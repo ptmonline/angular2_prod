@@ -2,4 +2,3 @@
 
 Various Angular 2 test
 - starting projects
-- karma/jasmine test setup
